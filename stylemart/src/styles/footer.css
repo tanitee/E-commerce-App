@@ -1,0 +1,64 @@
+.footer {
+  background-color: #080808;
+  color: white;
+  text-align: center;
+  padding: 1.5rem 0;
+  position: fixed;   
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.email-cont{
+    text-align: left;
+    margin-left: 10rem;
+    display: flex;
+    flex-direction: column;
+}
+.error-border{
+    border: 2px solid red;
+}
+.email-default{
+    border: none;
+    outline: none;
+    width: 50%;
+    padding: 0.7rem;
+    margin-top: 15px;
+}
+.submitButton{
+    padding: 0.7rem;
+    background-color: #ff7402;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: 25%;
+    font-weight: bold;
+    
+}
+.submitButton:hover{
+    background-color: #e65c00;
+}
+.footer-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem;
+    align-items: start; 
+}
+.quick-link-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+.quick-links:hover{
+    text-decoration: underline;
+    color: #ff7402;
+    transition: ease-in-out 0.2s;
+
+}
+.error-message{
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
