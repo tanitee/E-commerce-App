@@ -4,7 +4,7 @@
   align-items: center;
   padding: 1rem 2rem;
   background-color: #fff;
-  border-bottom: 1px solid #000000; /* bottom border */
+  border-bottom: 1px solid #000000;
 }
 
 .nav-links {
@@ -25,7 +25,7 @@
 }
 
 .nav-link.active {
-  color: #ff8e04; /* highlight active page */
+  color: #ff8e04; 
   font-weight: 600;
 }
 .cart-link{
@@ -36,8 +36,8 @@
 }
 .cart-count {
   position: absolute;
-  top: -6px;    /* moves it up */
-  right: -10px; /* moves it to the right */
+  top: -6px;  
+  right: -10px; 
   background-color: red;
   color: white;
   font-size: 12px;
