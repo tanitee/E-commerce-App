@@ -13,15 +13,15 @@ const Footer = () => {
   }
   return (
     <>
-      <footer className="footer">
+      <footer className="footer" onSubmit={handleSubmit(validateForm)}>
         <form id='email-form'>
           <div className="footer-grid">
             <div className="email-cont">
-                <label htmlFor="email">Email Address</label>
+                <label htmlFor="email"><h4>Email Address</h4></label>
                 <input type="email" placeholder="example@email.com" id="email" name="email"
                   className={errors.name ? "error-border" : "email-default" }
                   {...register("email", {
-                    required: "Please enter your email",
+                    required: "You can't leave this field blank",
                     pattern:{
                       value:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                       message:"Please enter a valid email address"
@@ -44,7 +44,7 @@ const Footer = () => {
               </div>
             </div>
         </form>
-        <p>© 2025 StyleMart. All rights reserved.</p>
+        <p className='copyrights'>© 2025 StyleMart. All rights reserved.</p>
       </footer>
     </>
   )
