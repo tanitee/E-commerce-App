@@ -1,4 +1,5 @@
 import {Route, createBrowserRouter, RouterProvider , createRoutesFromElements} from 'react-router-dom'
+import { useState } from 'react'
 import './App.css'
 import MainLayouts from './components/MainLayouts'
 import Home from './pages/Home'
@@ -11,6 +12,8 @@ import ProductDetails from "./pages/ProductDetails";
 
 
 function App() {
+  const [cart,setCart] = useState([])
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<MainLayouts />} >
