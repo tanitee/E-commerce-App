@@ -2,8 +2,6 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import '../styles/footer.css'
 import { Link } from 'react-router-dom'
-import Home from '../pages/Home'
-import Products from '../pages/Products'
 
 const Footer = () => {
   const {register, handleSubmit, formState: {errors}} = useForm()

@@ -4,15 +4,16 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 
 
+
 const MainLayouts = () => {
   return (
-    <>
-    <Navbar />
-    <main>
+    <div className="app-container">
+      <Navbar />
+      <main className="content">
         <Outlet />
-    </main>
-    <Footer />
-    </>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
