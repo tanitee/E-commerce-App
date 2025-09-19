@@ -16,7 +16,7 @@ function App() {
       <Route path='/' element={<MainLayouts />} >
         <Route index element={<Home/>}/>
         <Route path="products" element={<Products />} />
-        <Route path="product/:id" element={<ProductDetails />} />
+        <Route path="product/:id"  element={<ProductDetails onAddToCart={(p) => console.log("Added:", p)}/>}/>
         <Route path="cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="order-confirmation" element={<OrderConfirmation />} />

@@ -1,6 +1,6 @@
 .products-grid {
   display: grid;
-  grid-template-columns: 1fr; /* default: 1 per row */
+  grid-template-columns: repeat(2, 1fr);; /* default: 1 per row */
   justify-content: center;
   gap: 1.5rem;
   padding: 1.5rem;
