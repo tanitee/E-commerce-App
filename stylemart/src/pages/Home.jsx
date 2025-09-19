@@ -1,13 +1,12 @@
 import React from 'react'
 import LandingPage from '../components/LandingPage'
+import Products from './Products'
 
 const Home = () => {
   return (
     <>
       <LandingPage />
-      <div>Home</div>
-      <p>hey</p>
-      <p>sup</p>
+      <Products />
     </>
     
   )
