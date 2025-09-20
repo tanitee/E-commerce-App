@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound'
 import OrderConfirmation from './pages/OrderConfirmation'
 import Checkout from './pages/Checkout'
 import ProductDetails from "./pages/ProductDetails";
+import CartContext from './context/CartContext'
 
 
 function App() {
@@ -28,7 +29,11 @@ function App() {
     )
   )
 
-  return <RouterProvider router={router} />;
+  return (
+    <CartContext>
+      <RouterProvider router={router}/>
+    </CartContext>
+  );
 }
 
 export default App

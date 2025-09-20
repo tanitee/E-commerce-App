@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([
-    { id: 1, title: "Popwave Curse", price: 25.99, image: "/images/popwave.jpg" },
-    { id: 2, title: "Retro Hoodie", price: 49.99, image: "/images/hoodie.jpg" },
+    { id: 1, title: "Popwave Curse", price: 25.99, image: "/images/popwave.jpg" , quantity: 1},
+    { id: 2, title: "Retro Hoodie", price: 49.99, image: "/images/hoodie.jpg" , quantity: 1},
   ]);
 
   // Remove item from cart
