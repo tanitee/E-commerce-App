@@ -2,13 +2,18 @@ import {NavLink} from 'react-router-dom'
 import logo from '../assets/images/stylemart-logo-transparent.png'
 import '../styles/Navbar.css'
 import { IoCartOutline } from "react-icons/io5";
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 const Navbar = () => {
+  const { cart } = useContext(CartContext);
+  const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <nav className="navbar">
        <NavLink to="/" className="logo-link">
         <img src={logo} alt="StyleMart Logo" className="logo" />
-      </NavLink>
+       </NavLink>
       <div className="nav-links">
         <NavLink 
           to="/" 
@@ -33,7 +38,7 @@ const Navbar = () => {
           className="cart-link"
         >
           <IoCartOutline size={28} className='cart-icon' />
-          <span className="cart-count">5</span>
+          <span className="cart-count">{cartItemCount}</span>
         </NavLink>
       </div>
     </nav>

@@ -1,6 +1,10 @@
 import "../styles/ProductStyle.css"; 
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 const ProductsCard = ({ product, onAddToCart }) => {
+  const { addToCart } = useContext(CartContext);
+
   return (
     <div className="product-card">
       <img
@@ -13,7 +17,12 @@ const ProductsCard = ({ product, onAddToCart }) => {
       <p className="product-price">${product.price}</p>
       
       <button
-        onClick={() => onAddToCart(product)}
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();  
+            addToCart(product, 1);
+          }}
+
         className="add-to-cart-btn"
       >
         Add to Cart

@@ -1,10 +1,26 @@
 import { createContext, useState } from "react"
 
-const CartContext = ({children}) => {
-    const CartContext = createContext();
+export const CartContext = createContext();
+const CartProvider = ({children}) => {
+    
     const [cart, setCart] = useState([]);
 
-    const addToCart = (product, qty) =>{
+    const addToCart = (product, qty = 1) =>{
+        setCart((prevCart) => {
+            const existingItem = prevCart.find((item) => item.id === product.id);
+
+            if (existingItem) {
+            
+            return prevCart.map((item) =>
+                item.id === product.id
+                ? { ...item, quantity: item.quantity + qty }
+                : item
+            );
+            } else {
+                return [...prevCart, { ...product, quantity: qty }];
+            }
+        });
+
 
     }
     const removeFromCart = (id) =>{
@@ -28,4 +44,4 @@ const CartContext = ({children}) => {
   )
 }
 
-export default CartContext
+export default CartProvider
