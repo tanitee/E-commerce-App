@@ -1,4 +1,6 @@
 import { createContext, useState , useEffect } from "react"
+import {toast , Slide} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const CartContext = createContext();
@@ -28,6 +30,17 @@ const CartProvider = ({children}) => {
                 return [...prevCart, { ...product, quantity: qty }];
             }
         });
+        toast.success('Item added successfully', {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Slide,
+        });
 
 
     }
@@ -55,7 +68,9 @@ const CartProvider = ({children}) => {
                 item.id === id
                 ? { ...item, quantity: item.quantity - 1 }
                 : item
-            );
+            )
+            .filter((item) => item.quantity > 0);
+            
         })
     }
 

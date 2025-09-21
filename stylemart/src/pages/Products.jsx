@@ -3,6 +3,7 @@ import "../styles/products.css"
 import {Link} from 'react-router-dom'
 import dummyProducts from "../data/dummyProducts";
 
+
 const Products = () => {
 
   return (
@@ -17,6 +18,7 @@ const Products = () => {
           />
         </Link>
       ))}
+      
     </div>
   )
 }
