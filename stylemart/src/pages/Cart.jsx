@@ -1,32 +1,24 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState , useContext } from 'react'
 import "../styles/cart.css"
 import { Link } from 'react-router-dom'
+import { CartContext } from '../context/CartContext'
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    { id: 1, title: "Popwave Curse", price: 25.99, image: "/images/popwave.jpg" , quantity: 1},
-    { id: 2, title: "Retro Hoodie", price: 49.99, image: "/images/hoodie.jpg" , quantity: 1},
-  ]);
+  const { cart , removeFromCart , increaseQty , decreaseQty , getCartTotals } = useContext(CartContext);
 
-  // Remove item from cart
-  const handleRemove = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
-  };
-
-  // Calculate subtotal
-  const subtotal = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
 
   return (
     <div className="cart-page">
       <h2 className="cart-title">Your Cart</h2>
 
-      {cartItems.length === 0 ? (
+      {cart.length === 0 ? (
         <p className="empty-cart">Your cart is empty.</p>
       ) : (
         <div className="cart-container">
           <div className="cart-items">
-            {cartItems.map((item) => (
+            {cart.map((item) => (
               <div className="cart-item" key={item.id}>
                 <img src={item.image} alt={item.title} className="cart-item-img" />
 
@@ -35,9 +27,16 @@ const Cart = () => {
                   <p>${item.price.toFixed(2)}</p>
                 </div>
 
+                <div className="modifier-controls">
+                  <button className="qty-btn" onClick={() => {decreaseQty(item.id)}}>-</button>
+                  <span className="qty">{item.quantity}</span>
+                  <button className="qty-btn" onClick={() => {increaseQty(item.id)}}>+</button>
+                </div>
+
+
                 <button
                   className="remove-btn"
-                  onClick={() => handleRemove(item.id)}
+                  onClick={() => removeFromCart(item.id)}
                 >
                   Remove
                 </button>
@@ -47,8 +46,8 @@ const Cart = () => {
 
           <div className="cart-summary">
             <h3>Order Summary</h3>
-            <p>Subtotal: ${subtotal.toFixed(2)}</p>
-            <p>Total: ${subtotal.toFixed(2)}</p>
+            <p>Subtotal: ${getCartTotals().toFixed(2)}</p>
+            <p>Total: ${getCartTotals().toFixed(2)}</p>
             <Link to={'/order-confirmation'}>
             <button className="checkout-btn">Proceed to Checkout</button>
             </Link>
