@@ -58,6 +58,13 @@
   background-color: #e65c00;
 }
 
+/* product card height on phones */
+@media only screen and (max-width:550px){
+  .product-card {
+    height: 340px;
+  }
+
+}
 /* 2 cards per row on small tablets */
 @media (min-width: 640px) {
   .products-grid {

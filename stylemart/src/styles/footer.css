@@ -63,3 +63,17 @@
     margin-bottom: -10px;
     font-size: 0.9rem;
 }
+@media (max-width: 600px) {
+    .email-cont{
+        margin-left: 1rem;
+    }
+    .footer-grid{
+        text-align: center;
+    }
+    .submitButton{
+        width: 50%;
+    }
+    .email-default{
+        width: 100%;
+    }
+}
