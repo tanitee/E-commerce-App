@@ -17,7 +17,7 @@ const Checkout = () => {
     clearCart();
 
     // Redirect to Order Confirmation
-    navigate("/order-confirmation");
+    navigate("/order-confirmation" , { state: { orderData: data } });
   };
    
 
