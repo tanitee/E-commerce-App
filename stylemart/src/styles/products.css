@@ -80,3 +80,21 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+.page-cont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.previous-btn , .next-btn {
+  border: none;
+  padding: 0.5rem 1rem;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+.previous-btn:hover , .next-btn:hover{
+  background-color: rgba(0, 0, 0, 0.658);
+}

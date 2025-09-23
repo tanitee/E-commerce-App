@@ -1,0 +1,8 @@
+select{
+    padding: 1rem;
+    margin: 1rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}

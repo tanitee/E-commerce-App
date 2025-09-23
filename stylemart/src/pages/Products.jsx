@@ -6,6 +6,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import CategoryFilter from '../components/CategoryFilter';
 import AlphabetOrdFilter from '../components/AlphabetOrdFilter';
 import PriceRangeFilter from '../components/PriceRangeFilter';
+import {ArrowBigLeft , ArrowBigRight } from "lucide-react";
 
 const Products = ({isHome}) => {
   const [products, setProducts] = useState([]);
@@ -13,9 +14,13 @@ const Products = ({isHome}) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const categoriesRef = useRef(null);
   const [alphabetOrder, setAlphabetOrder] = useState("");
   const [priceOrder, setPriceOrder] = useState("");
+
+  //states for managing pagination
+  const [splitProducts , setSplitProducts] = useState([])
+  const [count, setCount] = useState(1)
+
 
   useEffect(() =>{
     const fetchProducts = async() => {
@@ -38,7 +43,7 @@ const Products = ({isHome}) => {
     let updatedProducts = [...products];
 
     if (selectedCategory !== "all") {
-    updatedProducts = updatedProducts.filter(
+      updatedProducts = updatedProducts.filter(
       (product) => product.category === selectedCategory
     );
   }
@@ -59,6 +64,25 @@ const Products = ({isHome}) => {
 
   setFilteredProducts(updatedProducts);
   },  [products, selectedCategory, priceOrder, alphabetOrder])
+
+  useEffect(() => {
+    const perPage = 10;
+    const start = (count - 1) * perPage;
+    const end = start + perPage;
+
+    setSplitProducts(filteredProducts.slice(start,end))
+  }, [filteredProducts, count])
+
+  const handlePrevPage = () =>{
+    if (count > 1){
+      setCount(prevCount => prevCount - 1)
+    }
+  }
+  const handleNext = () =>{
+    if(count < 2){
+      setCount(prevCount => prevCount + 1)
+    }
+  }
 
   if (loading) {
     return (
@@ -84,7 +108,7 @@ const Products = ({isHome}) => {
       )}
 
       <div className="products-grid">
-        {filteredProducts.map((product) => (
+        {splitProducts.map((product) => (
 
           <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
             <ProductCard
@@ -95,6 +119,15 @@ const Products = ({isHome}) => {
           </Link>
         ))}
       </div>
+      {!isHome && (
+        <>
+          <div className="page-cont">
+            <button className="previous-btn" onClick={handlePrevPage}><ArrowBigLeft/></button>
+            <h4>Page: {count} of 2</h4>
+            <button className="next-btn" onClick={handleNext}> <ArrowBigRight/> </button>
+          </div>
+        </>
+      )}
     </>
   )
 }
