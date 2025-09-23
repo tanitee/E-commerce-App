@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <LandingPage />
-      <Products />
+      <Products isHome={true} />
     </>
     
   )
