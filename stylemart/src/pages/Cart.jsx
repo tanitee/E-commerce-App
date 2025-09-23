@@ -7,8 +7,6 @@ import { CartContext } from '../context/CartContext'
 const Cart = () => {
   const { cart , removeFromCart , increaseQty , decreaseQty , getCartTotals } = useContext(CartContext);
 
-  const subtotal = cart.reduce((acc, item) => acc + item.price, 0);
-
   return (
     <div className="cart-page">
       <h2 className="cart-title">Your Cart</h2>
@@ -48,7 +46,7 @@ const Cart = () => {
             <h3>Order Summary</h3>
             <p>Subtotal: ${getCartTotals().toFixed(2)}</p>
             <p>Total: ${getCartTotals().toFixed(2)}</p>
-            <Link to={'/order-confirmation'}>
+            <Link to={'/checkout'}>
             <button className="checkout-btn">Proceed to Checkout</button>
             </Link>
           </div>

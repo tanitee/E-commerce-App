@@ -107,18 +107,34 @@ const Products = ({isHome}) => {
         </>
       )}
 
-      <div className="products-grid">
-        {splitProducts.map((product) => (
+      {/* display all products if on the home page */}
+      {isHome ? 
+        <div className="products-grid">
+          {filteredProducts.map((product) => (
 
-          <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ProductCard
-              key={product.id}
-              product={product}
-              onAddToCart={(p) => console.log("Added:", p)}
-            />
-          </Link>
-        ))}
-      </div>
+            <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={(p) => console.log("Added:", p)}
+              />
+            </Link>
+          ))}
+        </div> :
+        <div className="products-grid">
+          {splitProducts.map((product) => (
+
+            <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={(p) => console.log("Added:", p)}
+              />
+            </Link>
+          ))}
+        </div>
+      }
+      
       {!isHome && (
         <>
           <div className="page-cont">
