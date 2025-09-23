@@ -1,19 +1,49 @@
 import {useState , useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import "../styles/productDetails.css"
-import dummyProducts from "../data/dummyProducts";
+import ClipLoader from "react-spinners/ClipLoader";
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 
 const ProductDetails = ({onAddToCart}) => {
   const [qty, setQty] = useState(1); 
   const { addToCart } = useContext(CartContext);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [shortDesc, setShortDesc] = useState(true);
   const { id } = useParams();
-  const product = dummyProducts.find(p => p.id === parseInt(id));
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+        const data = await response.json();
+        setProduct(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching product:", error);
+        setLoading(false);
+      }
+    };
+    fetchProduct();
+  }, [id]);
+  const shortenedDesc = product?.description.length > 20
+    ? product.description.slice(0, 80) + "..."
+    : product?.description;
 
+   if (loading) {
+    return (
+    <div className="loading-container">
+      <ClipLoader size={50}/>
+    </div>
+    );
+  }
   if (!product) {
     return <p>Product not found</p>;
   }
+  const handleShow = () => {
+    setShortDesc(!shortDesc)
+  }
+ 
 
   return (
     <div className="product-details">
@@ -25,6 +55,13 @@ const ProductDetails = ({onAddToCart}) => {
       <div className="product-info-section">
         <h2 className="product-title">{product.title}</h2>
         <p className="product-price">${product.price}</p>
+        <p className="product-description"> 
+           {shortDesc ? shortenedDesc : product.description}{" "}
+            <button onClick={handleShow}>
+              {shortDesc ? "Show more" : "Show less"}
+            </button>
+        </p>
+        <p className="product-category"><strong>Category:</strong> {product.category}</p>
 
         <label htmlFor="quantity">Quantity:</label>
         <select id="quantity" className="quantity-dropdown" value={qty}

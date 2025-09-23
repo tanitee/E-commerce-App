@@ -14,7 +14,7 @@ const ProductsCard = ({ product, onAddToCart }) => {
         className="product-image"
       />
       <h3 className="product-title">{product.title}</h3>
-      <p className="product-category">{product.category}</p>
+      {/* <p className="product-category">{product.category}</p> */}
       <p className="product-price">${product.price}</p>
       
       <button
