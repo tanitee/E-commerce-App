@@ -1,6 +1,6 @@
 import {NavLink , Link} from 'react-router-dom'
 import logo from '../assets/images/stylemart-logo-transparent.png'
-import '../styles/Navbar.css'
+import '../styles/navbar.css'
 import { IoCartOutline } from "react-icons/io5";
 import { useContext , useState } from 'react';
 import { CartContext } from '../context/CartContext';
