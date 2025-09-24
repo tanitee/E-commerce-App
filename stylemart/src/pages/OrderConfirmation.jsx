@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation , Link } from "react-router-dom";
 
-const OrderConfirmation = ({data}) => {
+const OrderConfirmation = () => {
   const location = useLocation();
   const { orderData } = location.state || {};
 
